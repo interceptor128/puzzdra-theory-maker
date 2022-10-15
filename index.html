@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>パズドラ 定石メーカー(fork)</title>
+    <meta name="descriptions" content="パズドラのドロップの配置と動かし方を作成し、共有できるツールです。">
+    <meta name="keywords" content="パズドラ,パズル＆ドラゴンズ,puzzle&dragons,詰めパズドラ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Style-type" content="text/css">
+    <link rel="stylesheet" type="text/css" href="button.css" media="all">
+    <script type="text/javascript" charset="UTF-8" src="mt.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="Global.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="SceneManager.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="BallSelectScene.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="FieldScene.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="main.js"></script>
+</head>
+
+<body id="body" onload="javascript:init();">
+    <div id="top" style="display:none;"><a href="index.html">パズドラ 定石メーカー</a></div>
+    <div id="description" style="display:block;margin:10px;">
+        <div>
+            <h2 id="title">パズドラ 定石メーカー</h2>
+        </div>
+    </div>
+    <div style="color:#FF0000;">2022/10/15 ドロップ配置での猛毒ドロップと爆弾ドロップの配置に対応。</div>
+    <div style="margin:4px;">
+        <li>パズドラのドロップ配置を作成したり、動かして消え方を確認したりできます。</li>
+    </div>
+    <div style="margin:4px;">
+        <li>ドロップを配置する：フィールド上をクリックでドロップ一覧で選択されているドロップが配置されます。</li>
+    </div>
+    <div style="margin:4px;">
+        <li>ドロップを動かす：フィールド上のドロップをドラッグで動かして確認できます。</li>
+    </div>
+    <div>
+        <div style="float:left;">
+            <div>
+                <div id="openTodaysQuestion" style="margin:4px;"><a
+                        href="javascript:openTodaysQuestion();">本日の例題をやってみる。</a></div>
+                <div style="margin:4px;"><a href="javascript:shareImage();">動かし方を画像に出力する。</a></div>
+                <div style="margin:4px;"><a href="javascript:shareWeb();">動かし方を共有可能なURLで開く。</a></div>
+                <div style="margin:4px;"><a href="javascript:shareTwitter();">動かし方をTwitterでつぶやく。</a></div>
+            </div>
+            <div>
+                <ul id="tab" class="button-group">
+                    <li><button style="width:120px;height:48px;" class="button" id="buttonEditMode"
+                            onclick="javascript:setMode(0);">ドロップを<br />配置する</button></li>
+                    <li><button style="width:120px;height:48px;" class="button" id="buttonRecordMode"
+                            onclick="javascript:setMode(1);">ドロップを<br />動かす</button></li>
+                    <li><button style="width:120px;height:48px;" class="button" id="buttonPlayMode"
+                            onclick="javascript:setMode(2);">動きを<br />再生する</button></li>
+                </ul>
+            </div>
+            <div>
+                <canvas id="fieldCanvas" style="background-color:#888888;" width="384" height="320"></canvas><br />
+            </div>
+            <table width="100%">
+                <tr>
+                    <td>
+                        <img id="red" src="images/1_block_fire_mini.png" style="opacity:0.4;" />
+                        <img id="blue" src="images/2_block_water_mini.png" style="opacity:0.4;" />
+                        <img id="green" src="images/3_block_tree_mini.png" style="opacity:0.4;" />
+                        <img id="light" src="images/4_block_light_mini.png" style="opacity:0.4;" />
+                        <img id="dark" src="images/5_block_dark_mini.png" style="opacity:0.4;" />
+                        <img id="life" src="images/6_block_life_mini.png" style="opacity:0.4;" /><br />
+                        <img id="ozyama" src="images/7_block_obstacle_mini.png" style="opacity:0.4;" />
+                        <img id="bomb" src="images/7_block_bomb_mini.png" style="opacity:0.4;" />
+                        <img id="poison" src="images/8_block_poison_mini.png" style="opacity:0.4;" />
+                        <img id="poison2" src="images/8_block_deadly-poison_mini.png" style="opacity:0.4;" />
+                    </td>
+                    <td align="right">
+                        <div id="info" style="margin:10px;">コンボ数:0 手数:0</div>
+                    </td>
+                </tr>
+            </table>
+            <hr id="hr" align="left" />
+            <div id="editModeControllers" style="display:block;">
+                <canvas id="dropsCanvas" style="background-color:#888888;" width="384" height="128"></canvas><br />
+                <button style="margin:4px;" class="button" id="buttonReplaceRandom"
+                    onclick="javascript:replaceRandom();">ランダム配置</button>
+                <button style="margin:4px;" class="file">
+                    画像読込
+                    <input type="file" id="inputFile" />
+                </button>
+                <br />
+                <button style="margin:4px;" class="button" id="buttonSaveLayout"
+                    onclick="javascript:saveLayout();">配置保存</button>
+                <button style="margin:4px;" class="button" id="buttonLoadLayout"
+                    onclick="javascript:loadLayout();">配置読込</button>
+            </div>
+            <div id="moveModeControllers" style="display:none;">
+                <button style="margin:4px;" class="button" id="buttonResetMove"
+                    onclick="javascript:resetMove();">やり直す</button>
+                <button style="margin:4px;" class="button" id="buttonToggleMoveMode"
+                    onclick="javascript:toggleMoveMode();">通常モード</button>
+            </div>
+            <div id="playModeControllers" style="display:none;">
+                <button style="margin:4px;" class="button" id="buttonPlay" onclick="javascript:play();">再生</button>
+                <button style="margin:4px;" class="button" id="buttonPlay" onclick="javascript:stop();">初期配置</button>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    <br />
+    <div id="creator" style="margin:10px;">
+        作った人 <a href="https://twitter.com/powder0326">薄力粉</a> and <a href="https://twitter.com/interceptor128">セプタ</a>
+    </div>
+</body>
+
+</html>
