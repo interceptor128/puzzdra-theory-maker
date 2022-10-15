@@ -82,25 +82,25 @@ var ImageResource = {
 };
 
 ImageResource.BALL_RED = new Image();
-ImageResource.BALL_RED.src = "images/1_block_fire.png";
+ImageResource.BALL_RED.src = "images/1_block_fire.webp";
 ImageResource.BALL_BLUE = new Image();
-ImageResource.BALL_BLUE.src = "images/2_block_water.png";
+ImageResource.BALL_BLUE.src = "images/2_block_water.webp";
 ImageResource.BALL_GREEN = new Image();
-ImageResource.BALL_GREEN.src = "images/3_block_tree.png";
+ImageResource.BALL_GREEN.src = "images/3_block_tree.webp";
 ImageResource.BALL_LIGHT = new Image();
-ImageResource.BALL_LIGHT.src = "images/4_block_light.png";
+ImageResource.BALL_LIGHT.src = "images/4_block_light.webp";
 ImageResource.BALL_DARK = new Image();
-ImageResource.BALL_DARK.src = "images/5_block_dark.png";
+ImageResource.BALL_DARK.src = "images/5_block_dark.webp";
 ImageResource.BALL_LIFE = new Image();
-ImageResource.BALL_LIFE.src = "images/6_block_life.png";
+ImageResource.BALL_LIFE.src = "images/6_block_life.webp";
 ImageResource.BALL_OZYAMA = new Image();
-ImageResource.BALL_OZYAMA.src = "images/7_block_obstacle.png";
+ImageResource.BALL_OZYAMA.src = "images/7_block_obstacle.webp";
 ImageResource.BALL_BOMB = new Image();
-ImageResource.BALL_BOMB.src = "images/7_block_bomb.png";
+ImageResource.BALL_BOMB.src = "images/7_block_bomb.webp";
 ImageResource.BALL_POISON = new Image();
-ImageResource.BALL_POISON.src = "images/8_block_poison.png";
+ImageResource.BALL_POISON.src = "images/8_block_poison.webp";
 ImageResource.BALL_POISON2 = new Image();
-ImageResource.BALL_POISON2.src = "images/8_block_deadly-poison.png";
+ImageResource.BALL_POISON2.src = "images/8_block_deadly-poison.webp";
 
 // ブロックのつながりを調べて削除情報を作成
 function createDeleteList(blocks, hNum, vNum) {
