@@ -39,64 +39,49 @@
     <div>
         <div style="float:left;">
             <div>
-                <div id="openTodaysQuestion" style="margin:4px;"><a
-                        href="javascript:openTodaysQuestion();">本日の例題をやってみる。</a></div>
+                <div id="openTodaysQuestion" style="margin:4px;"><a href="javascript:openTodaysQuestion();">本日の例題をやってみる。</a></div>
                 <div style="margin:4px;"><s>動かし方を画像に出力する。</s></div>
                 <div style="margin:4px;"><a href="javascript:shareWeb();">動かし方を共有可能なURLで開く。</a></div>
                 <div style="margin:4px;"><a href="javascript:shareTwitter();">動かし方をTwitterでつぶやく。</a></div>
             </div>
             <div>
                 <ul id="tab" class="button-group">
-                    <li><button style="width:120px;height:48px;" class="button" id="buttonEditMode"
-                            onclick="javascript:setMode(0);">ドロップを<br />配置する</button></li>
-                    <li><button style="width:120px;height:48px;" class="button" id="buttonRecordMode"
-                            onclick="javascript:setMode(1);">ドロップを<br />動かす</button></li>
-                    <li><button style="width:120px;height:48px;" class="button" id="buttonPlayMode"
-                            onclick="javascript:setMode(2);">動きを<br />再生する</button></li>
+                    <li><button style="width:120px;height:48px;" class="button" id="buttonEditMode" onclick="javascript:setMode(0);">ドロップを<br />配置する</button></li>
+                    <li><button style="width:120px;height:48px;" class="button" id="buttonRecordMode" onclick="javascript:setMode(1);">ドロップを<br />動かす</button></li>
+                    <li><button style="width:120px;height:48px;" class="button" id="buttonPlayMode" onclick="javascript:setMode(2);">動きを<br />再生する</button></li>
                 </ul>
             </div>
             <div>
                 <canvas id="fieldCanvas" style="background-color:#888888;" width="384" height="320"></canvas><br />
             </div>
-            <table width="100%">
-                <tr>
-                    <td>
-                        <img id="red" src="images/1_block_fire_mini.png" style="opacity:0.4;" />
-                        <img id="blue" src="images/2_block_water_mini.png" style="opacity:0.4;" />
-                        <img id="green" src="images/3_block_tree_mini.png" style="opacity:0.4;" />
-                        <img id="light" src="images/4_block_light_mini.png" style="opacity:0.4;" />
-                        <img id="dark" src="images/5_block_dark_mini.png" style="opacity:0.4;" />
-                        <img id="life" src="images/6_block_life_mini.png" style="opacity:0.4;" /><br />
-                        <img id="ozyama" src="images/7_block_obstacle_mini.png" style="opacity:0.4;" />
-                        <img id="bomb" src="images/7_block_bomb_mini.png" style="opacity:0.4;" />
-                        <img id="poison" src="images/8_block_poison_mini.png" style="opacity:0.4;" />
-                        <img id="poison2" src="images/8_block_deadly-poison_mini.png" style="opacity:0.4;" />
-                    </td>
-                    <td align="right">
-                        <div id="info" style="margin:10px;">コンボ数:0 手数:0</div>
-                    </td>
-                </tr>
-            </table>
+            <div class="wrapper">
+                <div>
+                    <img id="red" src="images/1_block_fire_mini.png" width="24" height="24" style="opacity:0.4;" />
+                    <img id="blue" src="images/2_block_water_mini.png" width="24" height="24" style="opacity:0.4;" />
+                    <img id="green" src="images/3_block_tree_mini.png" width="24" height="24" style="opacity:0.4;" />
+                    <img id="light" src="images/4_block_light_mini.png" width="24" height="24" style="opacity:0.4;" />
+                    <img id="dark" src="images/5_block_dark_mini.png" width="24" height="24" style="opacity:0.4;" />
+                    <img id="life" src="images/6_block_life_mini.png" width="24" height="24" style="opacity:0.4;" />
+                    <br />
+                    <img id="ozyama" src="images/7_block_obstacle_mini.png" width="24" height="24" style="opacity:0.4;" />
+                    <img id="bomb" src="images/7_block_bomb_mini.png" width="24" height="24" style="opacity:0.4;" />
+                    <img id="poison" src="images/8_block_poison_mini.png" width="24" height="24" style="opacity:0.4;" />
+                    <img id="poison2" src="images/8_block_deadly-poison_mini.png" width="24" height="24" style="opacity:0.4;" />
+                </div>
+                <div id="info">コンボ数:0 手数:0</div>
+            </div>
             <hr id="hr" align="left" />
             <div id="editModeControllers" style="display:block;">
                 <canvas id="dropsCanvas" style="background-color:#888888;" width="384" height="128"></canvas><br />
-                <button style="margin:4px;" class="button" id="buttonReplaceRandom"
-                    onclick="javascript:replaceRandom();">ランダム配置</button>
-                <button style="margin:4px;" class="file">
-                    画像読込
-                    <input type="file" id="inputFile" />
-                </button>
+                <button style="margin:4px;" class="button" id="buttonReplaceRandom" onclick="javascript:replaceRandom();">ランダム配置</button>
+                <button style="margin:4px;" class="file"> 画像読込 <input type="file" id="inputFile" /></button>
                 <br />
-                <button style="margin:4px;" class="button" id="buttonSaveLayout"
-                    onclick="javascript:saveLayout();">配置保存</button>
-                <button style="margin:4px;" class="button" id="buttonLoadLayout"
-                    onclick="javascript:loadLayout();">配置読込</button>
+                <button style="margin:4px;" class="button" id="buttonSaveLayout" onclick="javascript:saveLayout();">配置保存</button>
+                <button style="margin:4px;" class="button" id="buttonLoadLayout" onclick="javascript:loadLayout();">配置読込</button>
             </div>
             <div id="moveModeControllers" style="display:none;">
-                <button style="margin:4px;" class="button" id="buttonResetMove"
-                    onclick="javascript:resetMove();">やり直す</button>
-                <button style="margin:4px;" class="button" id="buttonToggleMoveMode"
-                    onclick="javascript:toggleMoveMode();">通常モード</button>
+                <button style="margin:4px;" class="button" id="buttonResetMove" onclick="javascript:resetMove();">やり直す</button>
+                <button style="margin:4px;" class="button" id="buttonToggleMoveMode" onclick="javascript:toggleMoveMode();">通常モード</button>
             </div>
             <div id="playModeControllers" style="display:none;">
                 <button style="margin:4px;" class="button" id="buttonPlay" onclick="javascript:play();">再生</button>
@@ -106,13 +91,9 @@
         <div style="clear:both;"></div>
     </div>
     <br />
-    <div id="creator" style="margin:10px;">
-        オリジナル製作者: <a href="https://twitter.com/powder0326">薄力粉</a> fork: <a
-            href="https://twitter.com/interceptor128">セプタ</a>
+    <div id="creator" style="margin:10px;"> オリジナル製作者: <a href="https://twitter.com/powder0326">薄力粉</a> fork: <a href="https://twitter.com/interceptor128">セプタ</a>
     </div>
-    <div id="source" style="margin:10px;">
-        改善・要望は<a href="https://github.com/interceptor128/puzzdra-theory-maker/">GitHub</a>のIssueにてお願い致します。
-    </div>
+    <div id="source" style="margin:10px;"> 改善・要望は<a href="https://github.com/interceptor128/puzzdra-theory-maker/">GitHub</a>のIssueにてお願い致します。 </div>
 </body>
 
 </html>

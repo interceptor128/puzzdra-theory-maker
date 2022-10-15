@@ -144,7 +144,7 @@
 }
 
 
-/* Fileãƒœã‚¿ãƒ³ç”¨ */
+/* File inpit */
 .file {
   display: inline-block;
   *display: inline;
@@ -200,4 +200,22 @@
 #imobile div {
   display: inline-block;
   _display: inline;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* 幅2等分 */
+  grid-template-rows: 90px;
+  /* 100pxの2行 */
+  grid-gap: 1px;
+  /* 隙間10px */
+  margin-bottom: 0px;
+}
+
+.wrapper>div {
+  border-radius: 1px;
+  background: rgb(255, 255, 255);
+  border: 0;
+  padding: 1em;
 }
