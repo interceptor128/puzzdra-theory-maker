@@ -273,6 +273,10 @@ function shareTwitter() {
   var light = '%e5%85%89';
   var dark = '%e9%97%87';
   var life = '%e5%9b%9e';
+  var obstacle = '%E9%82%AA';
+  var bomb = '%E7%88%86';
+  var poison = '%E6%AF%92';
+  var deadpoison = '%E7%8C%9B';
   var colors = '';
   for (var i = 0; i < deletedColors.length; ++i) {
     if (deletedColors[i]) {
@@ -283,6 +287,10 @@ function shareTwitter() {
         case BallColor.LIGHT: colors += light; break;
         case BallColor.DARK: colors += dark; break;
         case BallColor.LIFE: colors += life; break;
+        case BallColor.OZYAMA: colors += obstacle; break;
+        case BallColor.BOMB: colors += bomb; break;
+        case BallColor.POISON: colors += poison; break;
+        case BallColor.POISON2: colors += deadpoison; break;
       }
     }
   }
